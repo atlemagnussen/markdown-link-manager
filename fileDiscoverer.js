@@ -1,40 +1,59 @@
-const { readdir, stat } = require("fs").promises;
-const { join } = require("path");
+const {readdir, stat} = require("fs").promises;
+const path = require("path");
 const ignore = ['.git', '.vscode'];
 
 class FileDiscoverer {
+    constructor(root) {
+        this.root = path.normalize(root);
+        this.get();
+    }
 
-    async execute(path) {
-        if (!path) {
+    async get() {
+        if (this.tree) {
+            return this.tree;
+        }
+        this.tree = await this.recurse(this.root);
+        return this.tree;
+    }
+
+    async recurse(p) {
+        if (!p) {
             throw new Error("missing path!");
         }
         const tree = [];
-        const content = await readdir(path);
+        const content = await readdir(p);
         for (let i = 0; i < content.length; i++) {
             const name = content[i];
             if (ignore.includes(name)) {
                 continue;
             }
-            const fullPath = join(path, name);
+            const fullPath = path.join(p, name);
             if ((await stat(fullPath)).isDirectory()) {
                 const dir = {
                     name,
-                    fullPath,
-                    isDir: true,
+                    "path": this.stripRoot(p),
+                    "isDir": true,
                 };
                 tree.unshift(dir);
-                dir.tree = await this.execute(fullPath);
+                dir.tree = await this.recurse(fullPath);
             } else {
                 const file = {
                     name,
-                    fullPath,
-                    isDir: false
+                    "path": this.stripRoot(p),
+                    "isDir": false
                 };
                 tree.push(file);
             }
         }
         return tree;
     }
+
+    stripRoot(p) {
+        if (p === this.root) {
+            return "";
+        }
+        return path.relative(this.root, p);
+    }
 }
 
-module.exports = new FileDiscoverer();
+module.exports = FileDiscoverer;

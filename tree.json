@@ -1,0 +1,41 @@
+[
+    {
+        "name": "images",
+        "path": "",
+        "isDir": true,
+        "tree": [
+            {
+                "name": "foo.jpg",
+                "path": "images",
+                "isDir": false
+            }
+        ]
+    },
+    {
+        "name": "api",
+        "path": "",
+        "isDir": true,
+        "tree": [
+            {
+                "name": "functions.md",
+                "path": "api",
+                "isDir": false
+            },
+            {
+                "name": "tests.md",
+                "path": "api",
+                "isDir": false
+            }
+        ]
+    },
+    {
+        "name": "about.md",
+        "path": "",
+        "isDir": false
+    },
+    {
+        "name": "index.md",
+        "path": "",
+        "isDir": false
+    }
+]

@@ -1,0 +1,10 @@
+[
+    "./wiki",
+    "https://toolchain.gitbook.com/",
+    "https://www.mkdocs.org/",
+    "/about",
+    "./about",
+    "./about.md",
+    "/testdocs/index",
+    "./testdocs/images/foo.jpg"
+]

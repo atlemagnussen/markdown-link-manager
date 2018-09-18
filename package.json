@@ -1,0 +1,27 @@
+{
+  "name": "markdown-link-manager",
+  "version": "0.1.0",
+  "description": "lib to change all links in a set of markdown documentation depending on if you will deploy it just as a wiki or static generator like gitbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlemagnussen/markdown-link-manager.git"
+  },
+  "keywords": [
+    "nodejs",
+    "markdown",
+    "link"
+  ],
+  "author": "Atle Magnussen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atlemagnussen/markdown-link-manager/issues"
+  },
+  "homepage": "https://github.com/atlemagnussen/markdown-link-manager#readme",
+  "dependencies": {
+    "markdown-link-extractor": "^1.2.0"
+  }
+}
